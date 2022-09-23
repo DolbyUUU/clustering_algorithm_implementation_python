@@ -1,6 +1,7 @@
 from GaussianMM import GaussianMM
 from KMeans import KMeans
 from MeanShift import MeanShift
+from Agglomerative import Agglomerative
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -44,8 +45,7 @@ def plot_clusters(samples, labels, title):
     plt.close()
 
 
-
-# 2d dataset a.
+# # 2d dataset a.
 
 meanshift = MeanShift(bandwidth=2.1, max_iter=200, tol=1e-4)
 cluster_labels, cluster_centers = meanshift.fit(data_a_x)
@@ -58,6 +58,10 @@ plot_clusters(data_a_x, cluster_labels, "blobs, k-means (my implementation)")
 gmm = GaussianMM(k=4, max_iter=200, n_init=500, regul=1e-6)
 cluster_labels, cluster_centers, cluster_weights = gmm.fit(data_a_x)
 plot_clusters(data_a_x, cluster_labels, "blobs, EM-GMM (my implementation)")
+
+agglomerative = Agglomerative(k=4, linkage="average")
+cluster_centers, cluster_labels = agglomerative.fit(data_a_x)
+plot_clusters(data_a_x, cluster_labels, "blobs, agglomerative (my implementation)")
 
 kmeans = cluster.KMeans(
     n_clusters=4, random_state=0, n_init=30, init="k-means++"
@@ -74,8 +78,12 @@ meanshift = cluster.MeanShift(bandwidth=bandwidth).fit(data_a_x)
 bandwidth = str(np.round(bandwidth, 2))
 plot_clusters(data_a_x, meanshift.labels_, f"blobs, mean-shift, bandwidth = {bandwidth} (scikit-learn)")
 
+agglomerative = cluster.AgglomerativeClustering(
+    n_clusters=4, affinity='euclidean', compute_full_tree='auto', linkage='average'
+    ).fit(data_a_x)
+plot_clusters(data_a_x, agglomerative.labels_, "blobs, agglomerative (scikit-learn)")
 
-# 2d dataset b.
+# # 2d dataset b.
 
 meanshift = MeanShift(bandwidth=1.65, max_iter=200, tol=1e-4)
 cluster_labels, cluster_centers = meanshift.fit(data_b_x)
@@ -88,6 +96,10 @@ plot_clusters(data_b_x, cluster_labels, "sticks, k-means (my implementation)")
 gmm = GaussianMM(k=4, max_iter=200, n_init=500, regul=1e-6)
 cluster_labels, cluster_centers, cluster_weights = gmm.fit(data_b_x)
 plot_clusters(data_b_x, cluster_labels, "sticks, EM-GMM (my implementation)")
+
+agglomerative = Agglomerative(k=4, linkage="average")
+cluster_centers, cluster_labels = agglomerative.fit(data_b_x)
+plot_clusters(data_b_x, cluster_labels, "sticks, agglomerative (my implementation)")
 
 kmeans = cluster.KMeans(
     n_clusters=4, random_state=0, n_init=30, init="k-means++"
@@ -104,7 +116,12 @@ meanshift = cluster.MeanShift(bandwidth=bandwidth).fit(data_b_x)
 bandwidth = str(np.round(bandwidth, 2))
 plot_clusters(data_b_x, meanshift.labels_, f"sticks, mean-shift, bandwidth = {bandwidth} (scikit-learn)")
 
-# 2d dataset c.
+agglomerative = cluster.AgglomerativeClustering(
+    n_clusters=4, affinity='euclidean', compute_full_tree='auto', linkage='average'
+    ).fit(data_b_x)
+plot_clusters(data_b_x, agglomerative.labels_, "sticks, agglomerative (scikit-learn)")
+
+# # 2d dataset c.
 
 meanshift = MeanShift(bandwidth=2.0, max_iter=200, tol=1e-4)
 cluster_labels, cluster_centers = meanshift.fit(data_c_x)
@@ -117,6 +134,10 @@ plot_clusters(data_c_x, cluster_labels, "moons and stars, k-means (my implementa
 gmm = GaussianMM(k=4, max_iter=200, n_init=500, regul=1e-6)
 cluster_labels, cluster_centers, cluster_weights = gmm.fit(data_c_x)
 plot_clusters(data_c_x, cluster_labels, "moons and stars, EM-GMM (my implementation)")
+
+agglomerative = Agglomerative(k=4, linkage="average")
+cluster_centers, cluster_labels = agglomerative.fit(data_c_x)
+plot_clusters(data_c_x, cluster_labels, "moons and stars, agglomerative (my implementation)")
 
 kmeans = cluster.KMeans(
     n_clusters=4, random_state=0, n_init=30, init="k-means++"
@@ -132,3 +153,8 @@ bandwidth = cluster.estimate_bandwidth(data_c_x, quantile=0.25, random_state=0)
 meanshift = cluster.MeanShift(bandwidth=bandwidth).fit(data_c_x)
 bandwidth = str(np.round(bandwidth, 2))
 plot_clusters(data_c_x, meanshift.labels_, f"moons and stars, mean-shift, bandwidth = {bandwidth} (scikit-learn)")
+
+agglomerative = cluster.AgglomerativeClustering(
+    n_clusters=4, affinity='euclidean', compute_full_tree='auto', linkage='average'
+    ).fit(data_c_x)
+plot_clusters(data_c_x, agglomerative.labels_, "moons and stars, agglomerative (scikit-learn)")
