@@ -9,8 +9,9 @@ Three popular clustering algorithms (for d >= 2 dimensions, k >= 2 clusters):
 Python implementations:  
 
 - KMeans.py: k-means  
+- KMeans_Ver0.py: second version of k-means implementation as a function  
 - GaussianMM.py: EM-GMM
-- GaussianMM_Ver0.py: another version of EM-GMM implementation, with AIC, BIC and predict  
+- GaussianMM_Ver0.py: second version of EM-GMM implementation with functions of AIC, BIC and predict  
 - MeanShift.py: mean-shift  
 
 Evaluations and tests:  
