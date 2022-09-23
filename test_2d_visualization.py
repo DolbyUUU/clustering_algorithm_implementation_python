@@ -62,7 +62,7 @@ plot_clusters(data_a_x, cluster_labels, "blobs, EM-GMM (my implementation)")
 kmeans = cluster.KMeans(
     n_clusters=4, random_state=0, n_init=30, init="k-means++"
     ).fit(data_a_x)
-plot_clusters(data_a_x, kmeans.labels_, "blobs, K-means(scikit-learn)")
+plot_clusters(data_a_x, kmeans.labels_, "blobs, k-means (scikit-learn)")
 
 gmm = mixture.GaussianMixture(
     n_components=4, covariance_type="full", random_state=0, n_init=300
@@ -72,7 +72,7 @@ plot_clusters(data_a_x, gmm.predict(data_a_x), "blobs, EM-GMM (scikit-learn)")
 bandwidth = cluster.estimate_bandwidth(data_a_x, quantile=0.25, random_state=0)
 meanshift = cluster.MeanShift(bandwidth=bandwidth).fit(data_a_x)
 bandwidth = str(np.round(bandwidth, 2))
-plot_clusters(data_a_x, meanshift.labels_, "blobs, mean-shift, bandwidth = {bandwidth} (scikit-learn)")
+plot_clusters(data_a_x, meanshift.labels_, f"blobs, mean-shift, bandwidth = {bandwidth} (scikit-learn)")
 
 
 # 2d dataset b.
@@ -102,7 +102,7 @@ plot_clusters(data_b_x, gmm.predict(data_b_x), "sticks, EM-GMM (scikit-learn)")
 bandwidth = cluster.estimate_bandwidth(data_b_x, quantile=0.25, random_state=0)
 meanshift = cluster.MeanShift(bandwidth=bandwidth).fit(data_b_x)
 bandwidth = str(np.round(bandwidth, 2))
-plot_clusters(data_b_x, meanshift.labels_, "sticks, mean-shift, bandwidth = {bandwidth} (scikit-learn)")
+plot_clusters(data_b_x, meanshift.labels_, f"sticks, mean-shift, bandwidth = {bandwidth} (scikit-learn)")
 
 # 2d dataset c.
 
@@ -131,4 +131,4 @@ plot_clusters(data_c_x, gmm.predict(data_c_x), "moons and stars, EM-GMM (scikit-
 bandwidth = cluster.estimate_bandwidth(data_c_x, quantile=0.25, random_state=0)
 meanshift = cluster.MeanShift(bandwidth=bandwidth).fit(data_c_x)
 bandwidth = str(np.round(bandwidth, 2))
-plot_clusters(data_c_x, meanshift.labels_, "moons and stars, mean-shift, bandwidth = {bandwidth} (scikit-learn)")
+plot_clusters(data_c_x, meanshift.labels_, f"moons and stars, mean-shift, bandwidth = {bandwidth} (scikit-learn)")
