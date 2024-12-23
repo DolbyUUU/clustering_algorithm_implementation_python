@@ -14,12 +14,12 @@ This project implements four popular clustering algorithms from scratch in Pytho
 
 ## Python Implementations
 
-- **`KMeans.py`**: Implementation of the K-Means clustering algorithm.  
-- **`KMeans_Ver0.py`**: A functional version of K-Means with modular methods.  
-- **`GaussianMM.py`**: Implementation of GMM using EM.  
-- **`GaussianMM_Ver0.py`**: An extended version with AIC, BIC, and prediction functions.  
-- **`MeanShift.py`**: Implementation of Mean-Shift clustering.  
-- **`Agglomerative.py`**: Implementation of Agglomerative clustering.
+- **`KMeans.py`**: K-Means clustering.  
+- **`KMeans_Ver0.py`**: K-Means clustering (2nd version).  
+- **`GaussianMM.py`**: EM-GMM.  
+- **`GaussianMM_Ver0.py`**: EM-GMM with functions of AIC, BIC and predict (2nd version).
+- **`MeanShift.py`**: Mean-Shift clustering.  
+- **`Agglomerative.py`**: Agglomerative clustering.
 
 ---
 
